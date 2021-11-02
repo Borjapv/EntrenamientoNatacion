@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace EntrenamientoNatacion
+namespace EntrenamientoNatacion.UI
 {
     public partial class MainWindow : Window
     {

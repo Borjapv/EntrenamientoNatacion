@@ -1,9 +1,7 @@
 ﻿using System;
 using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Controls.ApplicationLifetimes;
 
-namespace EntrenamientoNatacion
+namespace EntrenamientoNatacion.UI
 {
     class Program
     {
