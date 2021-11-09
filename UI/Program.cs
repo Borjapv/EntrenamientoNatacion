@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using EntrenamientoNatacion.Core;
 
 namespace EntrenamientoNatacion.UI
 {
@@ -17,5 +18,11 @@ namespace EntrenamientoNatacion.UI
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .LogToTrace();
+        
+        /*public static void Main(string[] args)
+        {
+            Medidas med = Medidas.Cargar("medidas.xml");
+            med.Guardar("medidas2.xml");
+        }*/
     }
 }
