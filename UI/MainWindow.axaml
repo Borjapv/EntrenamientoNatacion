@@ -26,6 +26,16 @@
                     Margin="5"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center" />
+            <Button Name="BtSave"
+                    Content="Guardar datos"
+                    Margin="5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center" />
+            <Button Name="BtChart"
+                    Content="Ver gráficos"
+                    Margin="5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center" />
         </StackPanel>
     </DockPanel>
 </Window>

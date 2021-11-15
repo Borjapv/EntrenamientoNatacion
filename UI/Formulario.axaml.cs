@@ -2,7 +2,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using EntrenamientoNatacion.Core;
 
 namespace EntrenamientoNatacion.UI
 {
@@ -14,15 +13,17 @@ namespace EntrenamientoNatacion.UI
 #if DEBUG
             this.AttachDevTools();
 #endif
-
+            
             var btOk = this.FindControl<Button>( "BtOk" );
             var btCancel = this.FindControl<Button>( "BtCancel" );
             var peso = this.FindControl<NumericUpDown>("Peso");
             var circAbd = this.FindControl<NumericUpDown>("CircAbd");
             var notas = this.FindControl<TextBox>("Notas");
 
-            btOk.Click += (o, args) => this.OnSave((int)peso.Value, (int)circAbd.Value, notas.Text);
-            btCancel.Click += (o, args) => this.OnClose();
+            btOk.Click += (o, args) => this.OnExit();
+            btCancel.Click += (o, args) => this.OnCancel();
+            
+            this.IsCancelled = false;
         }
 
         private void InitializeComponent()
@@ -30,17 +31,26 @@ namespace EntrenamientoNatacion.UI
             AvaloniaXamlLoader.Load(this);
         }
 
-        private void OnClose()
+        void OnCancel()
+        {
+            this.IsCancelled = true;
+            this.OnExit();
+        }
+
+        void OnExit()
         {
             this.Close();
         }
-        
-        private void OnSave(int peso, int circAbd, string notas)
-        {
-            //Medidas med = Medidas.Cargar("cargar");
-            //med.Guardar("guardar");
-            new Medidas(peso, circAbd, notas, DateTime.Today).Guardar("guardar");
-            this.Close();
+
+        public double Peso {
+            get => this.FindControl<NumericUpDown>( "Peso" ).Value;
         }
+        public double CircAbd {
+            get => this.FindControl<NumericUpDown>( "CircAbd" ).Value;
+        }
+        public string Notas {
+            get => this.FindControl<TextBox>( "Notas" ).Text.Trim();
+        }
+        public bool IsCancelled { get; private set; }
     }
 }
