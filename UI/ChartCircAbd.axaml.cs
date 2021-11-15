@@ -18,17 +18,22 @@ namespace EntrenamientoNatacion.UI
 #if DEBUG
             this.AttachDevTools();
 #endif
-
+            
+            var btAnt = this.FindControl<Button>( "BtAnt" );
+            var btSig = this.FindControl<Button>( "BtSig" );
             this.Chart = this.FindControl<Chart>( "CircGrf" );
             var rbBars = this.FindControl<RadioButton>( "CircBars" );
             var rbLine = this.FindControl<RadioButton>( "CircLine" );
+            
+            btAnt.Click += (_, _) => this.AntMes();
+            btSig.Click += (_, _) => this.SigMes();
 
             rbBars.Checked += (_, _) => this.OnChartFormatChanged();
             rbLine.Checked += (_, _) => this.OnChartFormatChanged();
             
-            this.Chart.LegendY = "Circ abdominal";
-            var fecha = DateTime.Today;
-            this.Chart.LegendX = fecha.ToString("MMMM", new CultureInfo("es-ES"));
+            this.Chart.LegendY = "Circ abdominal (cm)";
+            Fecha = DateTime.Today;
+            this.Chart.LegendX = Fecha.ToString("MMMM", new CultureInfo("es-ES"));
             
             ListaMedidas lista = ListaMedidas.CargarDatos();
             var dict = lista.GetLista();
@@ -36,7 +41,7 @@ namespace EntrenamientoNatacion.UI
             //buscar los valores del mes actual
             IEnumerable<int> valores = 
                 from x in dict
-                where x.Key.Month.Equals(fecha.Month)
+                where (x.Key.Month.Equals(Fecha.Month) && x.Key.Year.Equals(Fecha.Year))
                 select x.Value.CircAbd;
 
             this.Chart.Values = valores.ToArray();
@@ -65,6 +70,42 @@ namespace EntrenamientoNatacion.UI
             AvaloniaXamlLoader.Load(this);
         }
         
-        Chart Chart { get; }
+        public void AntMes()
+        {
+            Fecha = Fecha.AddMonths(-1);
+            this.Chart.LegendX = Fecha.ToString("MMMM", new CultureInfo("es-ES"));
+            
+            ListaMedidas lista = ListaMedidas.CargarDatos();
+            var dict = lista.GetLista();
+            
+            //buscar los valores del mes anterior
+            IEnumerable<int> valores = 
+                from x in dict
+                where (x.Key.Month.Equals(Fecha.Month) && x.Key.Year.Equals(Fecha.Year))
+                select x.Value.Peso;
+
+            this.Chart.Values = valores.ToArray();
+            this.Chart.Draw();
+        }
+        public void SigMes()
+        {
+            Fecha = Fecha.AddMonths(1);
+            this.Chart.LegendX = Fecha.ToString("MMMM", new CultureInfo("es-ES"));
+            
+            ListaMedidas lista = ListaMedidas.CargarDatos();
+            var dict = lista.GetLista();
+            
+            //buscar los valores del mes siguiente
+            IEnumerable<int> valores = 
+                from x in dict
+                where (x.Key.Month.Equals(Fecha.Month) && x.Key.Year.Equals(Fecha.Year))
+                select x.Value.Peso;
+
+            this.Chart.Values = valores.ToArray();
+            this.Chart.Draw();
+        }
+        
+        private Chart Chart { get; }
+        private DateTime Fecha { get; set; }
     }
 }
