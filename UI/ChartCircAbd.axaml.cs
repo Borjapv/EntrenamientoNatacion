@@ -10,23 +10,23 @@ using EntrenamientoNatacion.Core;
 
 namespace EntrenamientoNatacion.UI
 {
-    public partial class ChartPeso : Window
+    public partial class ChartCircAbd : Window
     {
-        public ChartPeso()
+        public ChartCircAbd()
         {
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
 #endif
 
-            this.Chart = this.FindControl<Chart>( "PesoGrf" );
-            var rbBars = this.FindControl<RadioButton>( "PesoBars" );
-            var rbLine = this.FindControl<RadioButton>( "PesoLine" );
+            this.Chart = this.FindControl<Chart>( "CircGrf" );
+            var rbBars = this.FindControl<RadioButton>( "CircBars" );
+            var rbLine = this.FindControl<RadioButton>( "CircLine" );
 
             rbBars.Checked += (_, _) => this.OnChartFormatChanged();
             rbLine.Checked += (_, _) => this.OnChartFormatChanged();
             
-            this.Chart.LegendY = "Peso (kg)";
+            this.Chart.LegendY = "Circ abdominal";
             var fecha = DateTime.Today;
             this.Chart.LegendX = fecha.ToString("MMMM", new CultureInfo("es-ES"));
             
@@ -37,7 +37,7 @@ namespace EntrenamientoNatacion.UI
             IEnumerable<int> valores = 
                 from x in dict
                 where x.Key.Month.Equals(fecha.Month)
-                select x.Value.Peso;
+                select x.Value.CircAbd;
 
             this.Chart.Values = valores.ToArray();
         }

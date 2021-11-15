@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="UI/ChartCircAbd.axaml" value="EntrenamientoNatacion.csproj" />
+        <entry key="UI/ChartPeso.axaml" value="EntrenamientoNatacion.csproj" />
+        <entry key="UI/ChartWindow.axaml" value="EntrenamientoNatacion.csproj" />
+        <entry key="UI/Formulario.axaml" value="EntrenamientoNatacion.csproj" />
+        <entry key="UI/MainWindow.axaml" value="EntrenamientoNatacion.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

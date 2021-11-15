@@ -1,0 +1,55 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Width="300" Height="200"
+        MinWidth="300" MinHeight="200"
+        MaxWidth="400" MaxHeight="300"
+        x:Class="EntrenamientoNatacion.UI.Formulario"
+        Title="EntrenamientoNatacion">
+    <StackPanel
+        Orientation="Vertical"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Margin="5">
+        
+        <DockPanel Margin="5">
+            <Label Content="Peso" DockPanel.Dock="Left" />
+            <NumericUpDown Value="60" Minimum="30" Maximum="400" Name="Peso" />
+        </DockPanel>
+        
+        <DockPanel Margin="5">
+            <Label Content="Circ abdominal" DockPanel.Dock="Left" />
+            <NumericUpDown Value="95" Minimum="50" Maximum="200" Name="CircAbd" />
+        </DockPanel>
+        
+        <DockPanel Margin="5">
+            <Label Content="Notas" DockPanel.Dock="Left" />
+            <TextBox Name="Notas" />
+        </DockPanel>
+        
+        <DockPanel
+            Margin="5"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom">
+            
+            <StackPanel
+                Orientation="Horizontal"
+                DockPanel.Dock="Right"
+                HorizontalAlignment="Right"
+                Margin="5">
+                
+                <Button
+                    Name="BtCancel"
+                    Margin="5"
+                    Content="Cancelar" />
+            
+                <Button
+                    Name="BtOk"
+                    Margin="5"
+                    Content="Guardar" />
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+</Window>

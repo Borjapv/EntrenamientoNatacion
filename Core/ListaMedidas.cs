@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace EntrenamientoNatacion.Core
@@ -15,6 +16,12 @@ namespace EntrenamientoNatacion.Core
             this.Lista = new Dictionary<DateTime, Medidas>();
         }
 
+        public Dictionary<DateTime, Medidas> GetLista()
+        {
+            return this.Lista.ToDictionary(entry => entry.Key,
+                                           entry => entry.Value);
+        }
+        
         public void Add(DateTime fecha, Medidas datos)
         {
             Lista.Add(fecha, datos);

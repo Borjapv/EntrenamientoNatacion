@@ -4,9 +4,9 @@ namespace EntrenamientoNatacion.Core
 {
     public class Medidas
     {
-        private int Peso { get; }
-        private int CircAbd { get; }
-        private string Notas { get; }
+        public int Peso { get; }
+        public int CircAbd { get; }
+        public string Notas { get; }
 
         public Medidas(int peso, int circAbd, string notas)
         {
