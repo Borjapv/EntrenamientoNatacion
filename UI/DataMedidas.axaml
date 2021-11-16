@@ -9,10 +9,16 @@
         <DataGrid.Columns>
             <DataGridTextColumn
                 Header="Fecha"
-                Binding="{Binding Keys}"/>
+                Binding="{Binding }"/>
             <DataGridTextColumn
                 Header="Peso"
-                Binding="{Binding Values}"/>
+                Binding="{Binding }"/>
+            <DataGridTextColumn
+                Header="Circ abdominal"
+                Binding="{Binding }"/>
+            <DataGridTextColumn
+                Header="Notas"
+                Binding="{Binding }"/>
         </DataGrid.Columns>
     </DataGrid>
 </Window>
