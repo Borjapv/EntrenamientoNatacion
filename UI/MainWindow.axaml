@@ -13,26 +13,25 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Name="OpExit" />
             </MenuItem>
-            <MenuItem Header="_View">
-                <MenuItem Header="_Form" Name="OpForm" />
-            </MenuItem>
-            <MenuItem Header="_Help">
-                <MenuItem Header="_About" Name="OpAbout" />
-            </MenuItem>
         </Menu>
         <StackPanel Margin="5">
             <Button Name="BtForm"
-                    Content="Añadir medidas"
+                    Content="Añadir medidas de hoy"
                     Margin="5"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center" />
-            <Button Name="BtSave"
-                    Content="Guardar datos"
+            <Button Name="BtData"
+                    Content="Ver datos"
                     Margin="5"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center" />
-            <Button Name="BtChart"
-                    Content="Ver gráficos"
+            <Button Name="BtChartP"
+                    Content="Gráfico circ abdominal"
+                    Margin="5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center" />
+            <Button Name="BtChartC"
+                    Content="Gráfico peso"
                     Margin="5"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center" />

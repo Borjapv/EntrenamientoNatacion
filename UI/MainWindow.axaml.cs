@@ -16,23 +16,22 @@ namespace EntrenamientoNatacion.UI
 #endif
         
         var opExit = this.FindControl<MenuItem>( "OpExit" );
-        var opAbout = this.FindControl<MenuItem>( "OpAbout" );
-        var opForm = this.FindControl<MenuItem>( "OpForm" );
         var btForm = this.FindControl<Button>( "BtForm" );
-        var btSave = this.FindControl<Button>( "BtSave" );
-        var btChart = this.FindControl<Button>( "BtChart" );
+        var btData = this.FindControl<Button>( "BtData" );
+        var btChartP = this.FindControl<Button>( "BtChartP" );
+        var btChartC = this.FindControl<Button>( "BtChartC" );
             
         opExit.Click += (_, _) => this.OnExit();
-        opAbout.Click += (_, _) => this.OnAbout();
 
-        opForm.Click += (_, _) => this.OnViewForm();
         btForm.Click += (_, _) => this.OnViewForm();
-        btSave.Click += (_, _) => this.OnSave();
-        btChart.Click += (_, _) => this.OnViewChart();
+        btData.Click += (_, _) => this.OnViewData();
+        btChartP.Click += (_, _) => this.OnViewChartPeso();
+        btChartC.Click += (_, _) => this.OnViewChartCircAbd();
         
         this.Closed += (_, _) => this.OnClose();
 
         this.Lista = ListaMedidas.CargarDatos();
+
         }
 
         private void InitializeComponent()
@@ -49,11 +48,6 @@ namespace EntrenamientoNatacion.UI
         {
             this.OnClose();
             this.Close();
-        }
-
-        void OnAbout()
-        {
-            //new AboutWindow().ShowDialog( this );
         }
 
         async void OnViewForm()
@@ -73,13 +67,18 @@ namespace EntrenamientoNatacion.UI
         {
             Lista.GuardarDatos();
         }
-        public void OnViewChart()
+        public void OnViewData()
+        {
+            new DataMedidas().Show();
+        }
+        public void OnViewChartPeso()
         {
             new ChartPeso().Show();
-            new ChartCircAbd().Show();
         }
-        
-        
+        public void OnViewChartCircAbd()
+        {
+            new ChartPeso().Show();
+        }
         ListaMedidas Lista { get; }
     }
 }

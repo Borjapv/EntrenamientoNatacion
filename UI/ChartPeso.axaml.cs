@@ -32,18 +32,18 @@ namespace EntrenamientoNatacion.UI
             
             this.Chart.LegendY = "Peso (kg)";
             Fecha = DateTime.Today;
-            this.Chart.LegendX = Fecha.ToString("MMMM", new CultureInfo("es-ES"));
+            this.Chart.LegendX = Fecha.ToString("MMMM yyyy", new CultureInfo("es-ES"));
             
             ListaMedidas lista = ListaMedidas.CargarDatos();
             var dict = lista.GetLista();
             
             //buscar los valores del mes actual
-            IEnumerable<int> valores = 
+            Valores = 
                 from x in dict
                 where (x.Key.Month.Equals(Fecha.Month) && x.Key.Year.Equals(Fecha.Year))
                 select x.Value.Peso;
 
-            this.Chart.Values = valores.ToArray();
+            this.Chart.Values = Valores.ToArray();
         }
 
         void OnChartFormatChanged()
@@ -72,39 +72,40 @@ namespace EntrenamientoNatacion.UI
         public void AntMes()
         {
             Fecha = Fecha.AddMonths(-1);
-            this.Chart.LegendX = Fecha.ToString("MMMM", new CultureInfo("es-ES"));
+            this.Chart.LegendX = Fecha.ToString("MMMM yyyy", new CultureInfo("es-ES"));
             
             ListaMedidas lista = ListaMedidas.CargarDatos();
             var dict = lista.GetLista();
             
             //buscar los valores del mes anterior
-            IEnumerable<int> valores = 
+            Valores = 
                 from x in dict
                 where (x.Key.Month.Equals(Fecha.Month) && x.Key.Year.Equals(Fecha.Year))
                 select x.Value.Peso;
 
-            this.Chart.Values = valores.ToArray();
+            this.Chart.Values = Valores.ToArray();
             this.Chart.Draw();
         }
         public void SigMes()
         {
             Fecha = Fecha.AddMonths(1);
-            this.Chart.LegendX = Fecha.ToString("MMMM", new CultureInfo("es-ES"));
+            this.Chart.LegendX = Fecha.ToString("MMMM yyyy", new CultureInfo("es-ES"));
             
             ListaMedidas lista = ListaMedidas.CargarDatos();
             var dict = lista.GetLista();
             
             //buscar los valores del mes siguiente
-            IEnumerable<int> valores = 
+            Valores = 
                 from x in dict
                 where (x.Key.Month.Equals(Fecha.Month) && x.Key.Year.Equals(Fecha.Year))
                 select x.Value.Peso;
 
-            this.Chart.Values = valores.ToArray();
+            this.Chart.Values = Valores.ToArray();
             this.Chart.Draw();
         }
         
         private Chart Chart { get; }
         private DateTime Fecha { get; set; }
+        private IEnumerable<int> Valores { get; set; }
     }
 }

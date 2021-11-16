@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Xml.Linq;
 
 namespace EntrenamientoNatacion.Core
 {
-    public class ListaMedidas
+    public class ListaMedidas : ObservableCollection<Dictionary<DateTime, Medidas>>
     {
         private Dictionary<DateTime, Medidas> Lista { get; set; }
 
@@ -24,7 +25,10 @@ namespace EntrenamientoNatacion.Core
         
         public void Add(DateTime fecha, Medidas datos)
         {
-            Lista.Add(fecha, datos);
+            if (!Lista.TryAdd(fecha, datos))
+            {
+                Lista[fecha] = datos;
+            }
         }
 
         public void GuardarDatos()

@@ -60,8 +60,8 @@ namespace EntrenamientoNatacion.UI {
             
             // Chart components
             this.DrawAxis();
-            this.DrawData();
             this.DrawLegends();
+            this.DrawData();
         }
         
         void DrawLegends()
@@ -88,29 +88,34 @@ namespace EntrenamientoNatacion.UI {
         void DrawData()
         {
             int numValues = this.values.Count;
-            var p = this.DataOrgPosition;
-            int xGap = this.GraphWidth / ( numValues + 1 );
-            int baseLine = (int) this.DataOrgPosition.Y;
+            if (numValues > 0)
+            {
+                var p = this.DataOrgPosition;
+                int xGap = this.GraphWidth / ( numValues + 1 );
+                int baseLine = (int) this.DataOrgPosition.Y;
 
-            this.NormalizeData();
-            for(int i = 0; i < numValues; ++i) {
-                string tag = this.values[ i ].ToString();
-                
-                var nextPoint = new Point(
-                    p.X + xGap, baseLine - this.normalizedData[ i ]
-                );
-                
-                if ( this.Type == ChartType.Bars ) {
-                    p = new Point( nextPoint.X, baseLine );
+                this.NormalizeData();
+                for (int i = 0; i < numValues; ++i)
+                {
+                    string tag = this.values[i].ToString();
+
+                    var nextPoint = new Point(
+                        p.X + xGap, baseLine - this.normalizedData[i]
+                    );
+
+                    if (this.Type == ChartType.Bars)
+                    {
+                        p = new Point(nextPoint.X, baseLine);
+                    }
+
+                    this.DrawLine(this.DataPen, p, nextPoint);
+                    this.DrawString(
+                        this.DataFont,
+                        (int) nextPoint.X,
+                        (int) nextPoint.Y,
+                        tag);
+                    p = nextPoint;
                 }
-                
-                this.DrawLine( this.DataPen, p, nextPoint );
-                this.DrawString(
-                            this.DataFont,
-                            (int) nextPoint.X,
-                            (int) nextPoint.Y,
-                            tag );
-                p = nextPoint;
             }
         }
         
