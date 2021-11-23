@@ -20,10 +20,11 @@ namespace EntrenamientoNatacion.UI
             var circAbd = this.FindControl<NumericUpDown>("CircAbd");
             var notas = this.FindControl<TextBox>("Notas");
 
-            btOk.Click += (o, args) => this.OnExit();
-            btCancel.Click += (o, args) => this.OnCancel();
+            btOk.Click += (o, args) => this.OnSave();
+            btCancel.Click += (o, args) => this.OnExit();
+            this.Closed += (_, _) => this.OnExit();
             
-            this.IsCancelled = false;
+            this.IsCancelled = true;
         }
 
         private void InitializeComponent()
@@ -31,9 +32,9 @@ namespace EntrenamientoNatacion.UI
             AvaloniaXamlLoader.Load(this);
         }
 
-        void OnCancel()
+        void OnSave()
         {
-            this.IsCancelled = true;
+            this.IsCancelled = false;
             this.OnExit();
         }
 
@@ -48,9 +49,15 @@ namespace EntrenamientoNatacion.UI
         public double CircAbd {
             get => this.FindControl<NumericUpDown>( "CircAbd" ).Value;
         }
-        public string Notas {
-            get => this.FindControl<TextBox>( "Notas" ).Text.Trim();
+        public string Notas
+        {
+            get
+            {
+                var toret = this.FindControl<TextBox>("Notas").Text ?? "";
+                return toret.Trim();
+            }
         }
+
         public bool IsCancelled { get; private set; }
     }
 }

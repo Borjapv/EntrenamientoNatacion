@@ -36,7 +36,7 @@ namespace EntrenamientoNatacion.UI {
             this.LegendY = "";
             this.normalizedData = Array.Empty<int>();
             this.FrameWidth = 50;
-            this.Type = ChartType.Bars;
+            this.Type = ChartType.Lines;
             this.AxisPen = new Pen( Brushes.Black, 10 );
             this.DataPen = new Pen( Brushes.Red, 4 );
             this.DataFont = new Font( 12 ) { Family = FontFamily.Default };
